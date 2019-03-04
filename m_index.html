@@ -1,0 +1,852 @@
+﻿<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+Created on : Jul 11, 2016, 9:05:20 PM
+Launched   : Jul 22, 2016, 7:44:50 PM
+Author     : Shanzid
+-->
+<!-- Made by Shanzid Shaiham -->
+<!-- If you're interested in using this code then maybe you can let me know on facebook or something, I might be able to help :P -->
+<!-- Tc..Byee :D -->
+<html>
+    <head>
+        <title>BitTalk</title>
+        <meta charset="UTF-8">
+        <link rel="shortcut icon" type="image/png" href="https://dl.dropboxusercontent.com/s/t6kdvzg6eo9csgq/fav.png?dl=0"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-route.min.js"></script>
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+        <script type="text/javascript" src="https://material.angularjs.org/latest/angular-material.min.js"></script>
+        
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.css">
+        <link href="https://fonts.googleapis.com/css?family=Raleway|Secular+One" rel="stylesheet">
+        <style>
+        html{
+            background-color: #000;
+            font-family: 'Raleway', sans-serif;
+        }
+        body {
+            background: url('https://dl.dropboxusercontent.com/s/93gegarwlcwd1pe/bg.jpg?dl=0') no-repeat center center fixed;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+            box-shadow: inset 0px 0px 0 5000px rgba(0,0,0,0.5);
+            position: fixed;
+            top:0px;
+            bottom:0px;
+            left:0px;
+            right: 0px;
+        }
+        video{
+            transform: rotateY(180deg);
+            -webkit-transform: rotateY(180deg);
+            -moz-transform: rotateY(180deg);
+        }
+        #welcome{
+            color: #f2f2f2;
+            width: 100%;
+            text-align: center;
+            padding-top: 10%;
+            text-shadow: 0px 0px 15px #000;
+            opacity:0;
+        }
+        #contents{
+            display: block;
+        }
+        #txt_username{
+            color:#fff !important;
+            width:150px;
+            font-size: 25px;
+            text-align: center;
+        }
+        input::-webkit-input-placeholder {
+            color:#666666 !important;
+            text-align: center;
+            font-size: 15px;
+        }
+        input::placeholder {
+           color:#666666 !important;
+            text-align: center;
+            font-size:15px;
+        }
+        input::-moz-input-placeholder {
+            color:#666666 !important;
+            text-align: center;
+            font-size: 15px;
+        }
+        #btn_div{
+            width:100%;
+            height: 25px;
+        }
+        #sign_btn{
+            -webkit-transition: all 0.2s ease-in-out;
+            -moz-transition: all 0.2s ease-in-out;
+            -o-transition: all .2s ease-in-out;
+            -ms-transition: all .2s ease-in-out;
+            transition: all .2s ease-in-out;
+            display:none;
+            opacity:0;
+        }
+        #signed_in{
+            text-align: center;
+            width:90%;
+            color:#fff;
+            background-color: rgba(0,0,0,.17);
+            display: none;
+            opacity: 0;
+            align-content: center;
+            text-align: center;
+            display: -webkit-inline-box;
+            display: -moz-inline-box;
+            display: inline-box;
+        }
+        #toolbar{
+            position: fixed;
+            top:0px;
+            right:0px;
+            left:0px;
+            background-color: rgba(0,0,0,.5);
+            height:50px;
+            padding-left:10px;
+            line-height: 50px;
+            color:#fff;
+            display: none;
+            opacity:0;
+            text-align: left;
+        }
+        #online_users{
+            font-family: sans-serif;
+            background-color: rgba(0,0,0,.2);
+            width:90%;
+            min-height: 200px;
+            height:auto;
+            opacity: 0;
+            display: none;
+            margin-top: 23px;
+            margin-left: 5%;
+            margin-right: 5%;
+            text-align: left;
+        }
+        .md-list-item{
+            -webkit-transition: all 0.1s ease-in-out;
+            -moz-transition: all 0.1s ease-in-out;
+            -o-transition: all .1s ease-in-out;
+            -ms-transition: all .1s ease-in-out;
+            transition: all .1s ease-in-out;
+            height:20px; 
+            width:100%;
+            color:white;
+            border-bottom: 1px solid rgba(225,225,225,.2);
+            line-height:20px;
+            cursor: pointer;
+        }
+        .md-list-item:hover{
+            background-color: rgba(225,225,225,.2);
+        }
+        .md-list-item:active{
+            background-color: rgba(225,225,225,.4);
+        }
+        #loading{
+            background-color: rgba(0,0,0,.2);
+            position:fixed;
+            width:100%;
+            text-align: center;
+            line-height: 200px;
+            height:200px;
+        }
+        #warning{
+            font-family: sans-serif;
+            color:gold;
+            display:none;
+        }
+        .dot_available{
+            border-radius: 50px;
+            width: 7px;
+            height: 7px;
+            position: relative;
+        }
+        #ui_screen{
+            -webkit-transition: all 0.5s ease-in-out;
+            -moz-transition: all 0.5s ease-in-out;
+            -o-transition: all .5s ease-in-out;
+            -ms-transition: all .5s ease-in-out;
+            transition: all .5s ease-in-out;
+            position: fixed;
+            top:10px;
+            bottom:10px;
+            left:10px;
+            right: 10px;
+            padding: 0px;
+            background-color: #fff;
+            box-shadow: 0px 0px 0px 240px rgba(0,0,0,.7);
+            display: none;
+            opacity: 0;
+            border-radius: 3px;
+        }
+        #vid-box{
+            height:100%;
+            width: 100%;
+            text-align:center;
+            position:relative;
+            position:relative;
+            border-radius: 3px;
+        }
+        #me{
+            -webkit-transition: all 0.2s ease-in-out;
+            -moz-transition: all 0.2s ease-in-out;
+            -o-transition: all .2s ease-in-out;
+            -ms-transition: all .2s ease-in-out;
+            transition: all .2s ease-in-out;
+            position: relative;
+            top:-80px;
+            opacity:1;
+            z-index: 99;
+            width:50px;
+        }
+        #me:hover{
+            opacity:1;
+        }
+        #call_info{
+            -webkit-transition: all 0.2s ease-in-out;
+            -moz-transition: all 0.2s ease-in-out;
+            -o-transition: all .2s ease-in-out;
+            -ms-transition: all .2s ease-in-out;
+            transition: all .2s ease-in-out;
+            position: relative;
+            top:0px;
+            left:0px;
+            right:0px;
+            height: 27px;
+            opacity:.4;
+            background-color: rgba(63, 81, 181, 0.95);
+            border-top-left-radius: 3px;
+            border-top-right-radius: 3px;
+            padding-left: 10px;
+            line-height:27px;
+            padding-right: 10px;
+            color:#fff;
+            font-family: sans-serif;
+            font-size: 13px;
+            z-index: 99;
+        }
+        #call_info:hover{
+           opacity:1;
+        }
+        #controls{
+            position: relative;
+            text-align: center;
+            top:-140px;
+            width:100%;
+            opacity:.4;
+            -webkit-transition: all 0.2s ease-in-out;
+            -moz-transition: all 0.2s ease-in-out;
+            -o-transition: all .2s ease-in-out;
+            -ms-transition: all .2s ease-in-out;
+            transition: all .2s ease-in-out;
+        }
+        #controls:hover{
+            opacity:1;
+        }
+        .end_call{
+            border-radius: 100px;
+            width:40px;
+            height:40px;
+            background-color: #F44336;
+            line-height: 40px;
+            text-align: center;
+            border-width: 0px;
+            margin-right: 20px;
+            -webkit-transition: all 0.2s ease-in-out;
+            -moz-transition: all 0.2s ease-in-out;
+            -o-transition: all .2s ease-in-out;
+            -ms-transition: all .2s ease-in-out;
+            transition: all .2s ease-in-out;
+            outline: none;
+            box-shadow: 0px 0px 10px 5px rgba(0,0,0,.2);
+        }
+        .end_call:hover{
+            background-color: #EF5350;
+        }
+        .end_call:active{
+            background-color: #E57373;
+        }
+        .pause_call{
+            border-radius: 100px;
+            width:40px;
+            height:40px;
+            background-color: #2196F3;
+            line-height: 40px;
+            text-align: center;
+            border-width: 0px;
+            margin-left: 20px;
+            -webkit-transition: all 0.2s ease-in-out;
+            -moz-transition: all 0.2s ease-in-out;
+            -o-transition: all .2s ease-in-out;
+            -ms-transition: all .2s ease-in-out;
+            transition: all .2s ease-in-out;
+            outline: none;
+            box-shadow: 0px 0px 10px 5px rgba(0,0,0,.2);
+        }
+        .pause_call:hover{
+            background-color:#42A5F5;
+        }
+        .pause_call:active{
+            background-color: #64B5F6;
+        }
+
+        .mute_call{
+            border-radius: 100px;
+            width:40px;
+            height:40px;
+            background-color: #009688;
+            line-height: 40px;
+            text-align: center;
+            border-width: 0px;
+            -webkit-transition: all 0.2s ease-in-out;
+            -moz-transition: all 0.2s ease-in-out;
+            -o-transition: all .2s ease-in-out;
+            -ms-transition: all .2s ease-in-out;
+            transition: all .2s ease-in-out;
+            outline: none;
+            box-shadow: 0px 0px 10px 5px rgba(0,0,0,.2);
+        }
+        .mute_call:hover{
+            background-color:#26A69A;
+        }
+        .mute_call:active{
+            background-color: #4DB6AC;
+        }
+        #call_receive{
+            width:100%; 
+            position: fixed; 
+            top:0px; 
+            bottom:0px; 
+            right:0px; 
+            left:0px; 
+            text-align: center; 
+            background-color: rgba(0,0,0,.5);
+            -webkit-transition: all 0.2s ease-in-out;
+            -moz-transition: all 0.2s ease-in-out;
+            -o-transition: all .2s ease-in-out;
+            -ms-transition: all .2s ease-in-out;
+            transition: all .2s ease-in-out;
+            display: none;
+            opacity: 0;
+        }
+        #call_rec{
+            width: 270px;
+            border-radius: 3px;
+            box-shadow: 0px 0px 20px 10px rgba(0,0,0,.5);
+            background-color: #fff;
+            position: relative;
+            text-align: center;
+            padding-top: 35px;
+            padding-bottom: 35px;
+            display: inline-block;
+            margin-top: 20%;
+        }
+        #credit{
+            position:fixed;
+            bottom:0px;
+            width:50%;
+            left:25%;
+            right:25%;
+            height:30px;
+            text-align: center;
+            color: #666666;
+            padding-top:10px;
+            border-top: 1px solid #666666;
+            font-size: 12px;
+        }
+        #credit a{
+            color: #9E9E9E;
+            font-size: 14px;
+            text-decoration: underline;
+        }
+        #credit a:hover{
+            color: #fff;
+        }
+        .material-icons.md-light { color: rgba(255, 255, 255, .9); }
+        .material-icons.md-light.md-inactive { color: rgba(255, 255, 255, 0.3); }
+        </style>
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <script src=https://cdn.pubnub.com/pubnub-dev.js></script>
+        <script src="https://cdn.pubnub.com/webrtc/webrtc.js"></script>
+        <script src="https://cdn.pubnub.com/webrtc/rtc-controller.js"></script>
+        <script>
+            var app=angular.module('BitTalk', ['ngMaterial']);
+            var video_out;
+            var vid_thumb;
+            var phone;
+            var myUid;
+            var ctrl;
+            var pbn=null;
+            var pbnb;
+            var inCall=false;
+            var callDuration;
+            var pub = 'pub-c-4caeaf3c-470a-4fb0-a1a4-040d46bd532d';
+            var sub = 'sub-c-2ebd4cca-4903-11e6-a1d5-0619f8945a4f';
+            function loaded(){
+                var check = false;
+                (function(a){if(/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino/i.test(a)||/1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(a.substr(0,4)))check = true;})(navigator.userAgent||navigator.vendor||window.opera);
+                if(!check){
+                    window.location="https://bittalk.updog.co/index.html";
+                    return true;
+                }else{
+                    video_out=document.getElementById("vid-box");
+                    vid_thumb = document.getElementById("vid-thumb");
+                    $('a[href*="updog"]').remove();
+                    if(cookieExists()){
+                        login(getCookie('username'));
+                    } else {
+                        $("#welcome").delay(500).animate({"opacity": "1"}, 700);
+                    }
+                    postAnalytics();
+                }
+            }
+            function postAnalytics() {
+                (function (i, s, o, g, r, a, m) {
+                    i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                        (i[r].q = i[r].q || []).push(arguments)
+                    }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                    m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+                })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+                ga('create', 'UA-100423949-4', 'auto');
+                ga('set', 'checkProtocolTask', function () { });
+                ga('require', 'displayfeatures');
+                ga('send', 'pageview', 'BitTalk- mobile');
+            }
+            function login(username) {
+                    phone= window.phone = PHONE({
+                        number        : username,
+                        publish_key   : pub,
+                        origin        :'pubsub.pubnub.com',
+                        subscribe_key : sub,
+                        media         : { audio : true, video : true },
+                        ssl           :true,
+                        onaddstream   : addRemoteVideo
+                    });
+                    myUid=username;
+                    ctrl = window.ctrl = CONTROLLER(phone);
+                    phone.ready(function(){ 
+                        loginSuccess(phone.number());
+                        applyMyVideo('videoElement_home', true);
+                    });
+                    phone.receive(function(session){
+                        session.ended(function(session) {
+                            close_callUI(); 
+                            alert("Call ended: "+session.number);
+                            setState('false');
+                            applyMyVideo('videoElement_home', true);
+                            applyMyVideo('videoElement_call', false);
+                        });
+                    });
+                    function addRemoteVideo(obj){
+                        inCall=true;
+                        setState('true');
+                        open_callUI(obj.number);
+                        setDuration();
+                        $("#vid-box").css('background-color', '#000');
+                        //$("#calling_load").css('display', 'block');
+                        $("#calling_load").css('display', 'none');
+                        $("#videoRemote").css('display', 'block');
+                        $("#videoRemote").attr( "src", window.URL.createObjectURL(obj.stream) );
+                    }
+                    ctrl.videoToggled(function(session, isEnabled){
+                        ctrl.getVideoElement(session.number).toggle(isEnabled);
+                    });
+                    ctrl.audioToggled(function(session, isEnabled){
+                            ctrl.getVideoElement(session.number).css("opacity",isEnabled ? 1 : 0.75);
+                    });
+            }
+            function setDuration(){
+                var start_time=Math.round((Math.floor(Date.now() / 1000)));
+                function time(){
+                    if(inCall){
+                        $("#call_duration").text(secondsToHms(Math.round((Math.floor(Date.now() / 1000))-start_time)));
+                        callDuration =setTimeout(time, 1000);
+                    }else{
+                        clearTimeout(callDuration);
+                        $("#call_duration").text("0:00");
+                    }
+                }
+                callDuration = setTimeout(time, 1000);
+            }
+            function secondsToHms(d) {
+                d = Number(d);
+                var h = Math.floor(d / 3600);
+                var m = Math.floor(d % 3600 / 60);
+                var s = Math.floor(d % 3600 % 60);
+                return ((h > 0 ? h + ":" + (m < 10 ? "0" : "") : "") + m + ":" + (s < 10 ? "0" : "") + s);
+            }
+
+            //****************STYLES****************//
+            function input(){
+                if($("#txt_username").val().trim().length>0){
+                    if($("#sign_btn").css('display')!=='block'){
+                        $("#sign_btn").css('display', 'block');
+                        $("#sign_btn").delay(0).animate({"opacity": "1"}, 200);
+                    }
+                }else{
+                  $("#sign_btn").css('display', 'none');
+                  $("#sign_btn").css('opacity', '0');
+                }
+            }
+            function signIn(){
+                $("#txt_username").prop('ng-disabled', 'true');
+                $("#sign_btn").css('display', 'none');
+                $("#load").css('display', 'block');
+                ck_online($("#txt_username").val());
+            }
+            function loginSuccess(number){
+                $("#contents").css('display', 'block');
+                $("#welcome").delay(0).animate({"opacity": "0"}, 500);
+                setCookie('username', number, 1);
+                $("#welcome").css('display', 'none');
+                $("#signed_in").css('display', '-webkit-inline-box');
+                $("#signed_in").delay(0).animate({"opacity": "1"}, 700);
+                $("#toolbar").css('display', '-webkit-inline-box');
+                $("#toolbar").delay(0).animate({"opacity": "1"}, 700);
+                $("#uname").text(number);
+                $("#online_users").css('display', 'block');
+                $("#online_users").delay(0).animate({"opacity": "1"}, 700);
+                getOnline();
+                get_xirsys_servers();
+            }
+            
+            function ck_online(uname){
+                if(pbn===null){
+                 pbn=PUBNUB.init({
+                    publish_key   : pub,
+                    subscribe_key : sub,
+                    origin        :'pubsub.pubnub.com',
+                    ssl           :true,
+                    error         : function (error) {console.log('Error:', error);}
+                });}
+                 pbn.here_now({
+                    channel  :"vc",
+                    callback : function(m){
+                        var con=$.inArray(uname, m.uuids);
+                        if(con<0){ pbn=null; login(uname);}
+                        else{
+                          $("#warning").css('display', 'block');
+                          $("#txt_username").prop('ng-disabled', 'false');
+                          $("#sign_btn").css('display', 'block');
+                          $("#load").css('display', 'none');
+                        }
+                    }
+                });
+            }
+            
+            function getOnline(){
+                $("#items").children().remove();
+                pbnb =  PUBNUB.init({
+                    publish_key   : pub,
+                    subscribe_key : sub,
+                    origin        :'pubsub.pubnub.com',
+                    uuid          : phone.number(),
+                    ssl           :true,
+                    error: function (error) {console.log('Error:', error);}
+                });
+                pbnb.here_now({
+                   channel:'vc',
+                   state:true,
+                   callback : function(ma){
+                        console.log(ma);
+                        pbnb.subscribe({
+                            channel  : "vc",
+                            connect  : function(){console.log("Connected to vc");},
+                            error    : function(){console.log("Network Error");},
+                            presence : function(m) {
+                                if(!m.hasOwnProperty('data')){
+                                    var uid_state;
+                                    for(i=0;i<ma.uuids.length;i++){
+                                        if(ma.uuids[i].uuid===m.uuid){
+                                            uid_state=ma.uuids[i].state;
+                                        }
+                                    }
+                                    apply(m,uid_state);
+                                }else{
+                                    apply(m,'');
+                                }
+                                console.log(m);
+                            },
+                            callback :function(a){console.log("callback: "+a);}
+                        });
+                        setState('false');
+                   }
+                });
+                
+                function apply(list, uid_state){
+                    if(list.action==="join"){
+                     var uid=list.uuid;
+                     if(uid!==myUid){
+                       var item=$("#it_template").children("md-list-item").eq(0);
+                       var newItem = item.clone(); 
+                       newItem.children("p").eq(0).text(uid);
+                       newItem.children("span").eq(0).attr("class", "dot_available");
+                       newItem.attr('md-ink-ripple', '#fff');
+                       newItem.attr('class', 'md-list-item');
+                       newItem.attr('name', uid);
+                       newItem.attr('isBusy', 'false');
+                       if(list.hasOwnProperty('data')){
+                           if(list.data.isBusy==="true"){
+                              newItem.children("span").eq(0).css("background-color", 'gold');
+                              newItem.attr('isBusy', 'true');
+                           }else{
+                              newItem.children("span").eq(0).css("background-color", 'chartreuse');
+                              newItem.attr('isBusy', 'false');
+                           }
+                       }else{
+                            if(uid_state.isBusy==="true"){
+                              newItem.children("span").eq(0).css("background-color", 'gold');
+                              newItem.attr('isBusy', 'true');
+                           }else{
+                              newItem.children("span").eq(0).css("background-color", 'chartreuse');
+                              newItem.attr('isBusy', 'false');
+                           }
+                       }
+                     $("#items").append(newItem);
+                    }
+                   } else if(list.action==="leave" || list.action==="timeout"){
+                        $("#items").children('[name='+list.uuid+']').eq(0).remove();
+                   } else if(list.action==="state-change"){
+                        var itm=$("#items").children('[name='+list.uuid+']').eq(0);
+                        if(list.data.isBusy==="true"){
+                           itm.children("span").eq(0).css("background-color", 'gold');
+                           itm.attr('isBusy', 'true');
+                        }else{
+                           itm.children("span").eq(0).css("background-color", 'chartreuse');
+                           itm.attr('isBusy', 'false');
+                        }
+                    }
+                    $("#loading").css('display', 'none');
+                }
+            }
+            function signOut(){
+                pbnb.unsubscribe({
+                   channel  : "vc",
+                   error    : function(){console.log("Network Error");}
+                });
+                deleteCookie('username');
+                location.reload();
+            }
+            
+            var StunTurn_servers="";
+            function get_xirsys_servers() {
+                if (true) {
+                    $.ajax({
+                        url: "https://global.xirsys.net/_turn/BitTalk/",
+                        type: "PUT",
+                        async: false,
+                        headers: {
+                            "Authorization": "Basic " + btoa("Shanzid01:f7dd1078-6c82-11e8-9714-b0dbf26a0d3e")
+                        },
+                        success: function (res) {
+                            StunTurn_servers = res.v.iceServers;
+                            console.log("Servers initiated");
+                        }
+                    });
+                }
+            }
+            function call(uid_el){
+                var c_uid=$(uid_el).attr("name");
+                ctrl.isOnline(c_uid, function(isOn){
+                    if(isOn){
+                        if($(uid_el).attr('isBusy')==='false'){
+                            if(StunTurn_servers!==""){
+                            open_callUI(c_uid);
+                            setState('true');
+                            phone.dial(c_uid, StunTurn_servers);
+                        }else{
+                            alert("Servers are not ready yet, try again in a bit.");
+                        }
+                        }else{
+                            alert("User is busy");
+                        }
+                    }else{
+                        alert("Sorry user is offline");
+                    }
+                });
+            }
+            function open_callUI(caller_id){
+                if($("#ui_screen").css('display')==='none'){
+                    $("#ui_screen").css('display', 'block');
+                    $("#ui_screen").delay(0).animate({"opacity": "1"}, 350);
+                    $("#caller_id").text(caller_id);
+                    applyMyVideo('videoElement_home', false);
+                    applyMyVideo('videoElement_call', true);
+                }
+            }
+            function close_callUI(){
+                $("#ui_screen").css('display', 'none');
+                $("#vid-box").css('background-color', '#fff');
+                //$("#vid-box").children().remove();
+                $("#calling_load").css('display', 'inline-flex');
+                inCall=false;
+            }
+            function end_call(){
+                ctrl.hangup();
+                setState('false');
+                close_callUI();
+                applyMyVideo('videoElement_home', true);
+                applyMyVideo('videoElement_call', false);
+            }
+            function mute(){
+                var audio = ctrl.toggleAudio();
+                if (!audio) {
+                    $("#mute_call_btn").text("mic");
+                    $("#mute_call_btn").parent().attr('title', 'Unmute call');
+                }
+                else {
+                    $("#mute_call_btn").text("mic_off");
+                    $("#mute_call_btn").parent().attr('title', 'Mute call');
+                }
+            }
+            function pause(){
+                var video = ctrl.toggleVideo();
+                if (!video) {
+                    $("#pause_call_btn").text("phone_in_talk");
+                    $("#pause_call_btn").parent().attr('title', 'Unpause call');
+                }
+                else {
+                    $("#pause_call_btn").text("phone_paused");
+                    $("#pause_call_btn").parent().attr('title', 'Pause call');
+                }
+            }
+            function setState(isBusy){
+                pbnb.state({
+                    channel  : "vc",
+                    state    : {
+                        "isBusy" : isBusy
+                    },
+                    callback : function(m){
+                        console.log(m);
+                    },
+                    error    : function(m){
+                        console.log(m);
+                    }
+                });
+            }
+            
+            //*********Update 25/07/2016: cookie use, video feed***********//
+            function setCookie(cname, cvalue, exdays) {
+                var d = new Date();
+                d.setTime(d.getTime() + (exdays*24*60*60*1000));
+                var expires = "expires="+d.toUTCString();
+                document.cookie = cname + "=" + cvalue + "; " + expires;
+            }
+            function getCookie(cname) {
+                var name = cname + "=";
+                var ca = document.cookie.split(';');
+                for(var i = 0; i < ca.length; i++) {
+                    var c = ca[i];
+                    while (c.charAt(0) === ' ') {
+                        c = c.substring(1);
+                    }
+                    if (c.indexOf(name)=== 0) {
+                        return c.substring(name.length, c.length);
+                    }
+                }
+                return "";
+            }
+            function applyMyVideo(component_id, assign){
+                var component=document.getElementById(component_id);
+                if(assign===true){
+                    navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia || navigator.oGetUserMedia;
+                    if (navigator.getUserMedia) {       
+                        navigator.getUserMedia({video: true}, function(stream){component.src= window.URL.createObjectURL(stream);}, function(){alert("Couldn't fetch video feed");});
+                    }
+                }else{
+                    component.src="";
+                }
+            }
+            function cookieExists() {
+                var user = getCookie("username");
+                if (user !== "") {
+                   return true;
+                } else {
+                   return false;
+                }
+            }
+            function deleteCookie(cookie_name){
+                document.cookie = cookie_name+"=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+            }
+        </script>
+
+    </head>
+    <body onload="loaded()" ng-app="BitTalk">
+        <div>
+            <div id="welcome">
+                <span style="font-size: 30px">Welcome to <span style="font-size: 35px; font-family: 'Secular One', sans-serif;">BitTalk</span>!</span>
+                <div style="height:50px; width: 100%"></div>
+                <div id="warning"> Username already exists </div>
+                <md-input-container style="margin:0px" md-no-float>
+                    <input ng-disabled="false" ng-model="user.name" placeholder="Username" id="txt_username" oninput="input()" ng-required="true">
+                </md-input-container>
+                <br/>
+                <div id="btn_div">
+                    <div id="sign_btn">
+                        <button class="md-button" onclick="signIn()">Sign in</button>
+                    </div>
+                    <div id="load" style="display:none; margin-left: -15px; margin-top: 5px"><md-progress-circular md-mode="indeterminate" style="margin-left:-15px" md-diameter="25px"></md-progress-circular></div>
+                </div>
+                <br/>
+                <span style="color:#9E9E9E; font-size:15px">Pick a username to start off</span>
+                <div id="credit">Made with <3 by <a href="https://facebook.com/shanzid01">Shanzid</a></div>
+            </div>
+            <div id="contents" style="text-align:center;overflow-y: visible; display: none; position:fixed; top:70px; left:0px; right:0px; bottom:0px">
+            <div id="signed_in">
+                <div style="width:50%">
+                <div id="vid-thumb"><video autoplay="true" muted="true" id="videoElement_home" style="width:100%"></video></div>
+                </div>
+                <div style="padding:10px; text-align: left; width:50%">
+                <span style="color:grey">Signed in as</span>
+                <br/>
+                <div id="uname" style="font-size:20px; font-weight: bold; margin-top:5px"></div>
+                <br/>
+                </div>
+            </div>
+            <div id="toolbar">
+                <div style="width:50%"><span style="font-size: 20px; font-family: 'Secular One', sans-serif;">BitTalk</span></div>
+                <div style="width:50%; text-align: right"><button class="md-button" onclick="signOut()">Sign out</button></div>
+            </div>
+            <div id="online_users">
+                <div id="header" class="md-no-sticky" style="background-color: #263238; padding: 5px;color:#90A4AE;border-top-right-radius: 2px;border-top-left-radius:2px; font-size:12px; height:20px;line-height:20px">Now online</div>
+                <div id="items" style="color:#fff">
+                </div>
+                 <div style="display:none" id="it_template">
+                    <md-list-item onclick="call(this)">
+                        <p style="padding-left: 15px"></p>
+                        <span style="margin-right: 10px"></span>
+                    </md-list-item>
+                 </div>
+                <div id="loading">
+                    <md-progress-circular md-mode="indeterminate" style="margin-left:-15px" md-diameter="15px"></md-progress>
+                </div>
+            </div>
+            <div id="ui_screen">
+                <div style="position:fixed; top:0px; bottom:0px; right:0px; left:0px;"></div>
+                <div id="call_info"><div id="caller_id" style="width:50%; text-align: left; height:25px"></div><div id="call_duration" style="position:relative; right:0px; width:100%; top:-25px; text-align: right">0:00</div></div>
+                <div id="vid-box">
+                    <div id="calling_load" style="display: inline-flex;vertical-align: middle;height: 100%;width: 100%;"><img title="Connecting..." alt="Connecting..." style="height: 200px;margin-top: auto;margin-left: auto;margin-bottom: auto;margin-right: auto;" src="https://dl.dropboxusercontent.com/s/cjedl4utq6itor7/calling.jpg?dl=0"/></div>
+                    <video id="videoRemote" style="width:100%; display:none;" autoplay="true"></video>
+                </div>
+                <div id="me"><video autoplay="true" muted="true" id="videoElement_call" style="height:50px; z-index: 99"></video></div>
+                <div id="controls" md-no-ink>
+                    <button class="end_call" md-ink-ripple onclick="end_call()" title="End call"><md-icon id="end_call_btn" class="material-icons md-light">call_end</md-icon></button>
+                    <button class="mute_call" onclick="mute()" title="Mute call"><md-icon id="mute_call_btn" class="material-icons md-light md-ink-ripple">mic_off</md-icon></button>
+                    <button class="pause_call" onclick="pause()" title="Pause call"><md-icon id="pause_call_btn" class="material-icons md-light md-ink-ripple">phone_paused</md-icon></button>
+                </div>
+            </div>
+            </div>
+            </div>
+    </body>
+</html>
