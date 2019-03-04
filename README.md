@@ -8,3 +8,5 @@ Peer-to-peer communication, so no servers are required for the video calls.
 
 To use the app, choose a unique username and Sign in. No new accounts/sign up processes are required.
 Clicking on an item from the list of online users initiates a video calling session with the user.
+
+<i> Last Updated on July 16, 2016</i>
