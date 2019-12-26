@@ -1,6 +1,6 @@
 # BitTalk
 
-See WebApp at: https://shanzid.com/proj/BitTalk/index.html
+See WebApp at: https://bittalk.shanzid.com
 
 A lightweight web-based WebRTC video chat application built with <a href="https://www.pubnub.com/">PubNub</a>.
 Uses <a href="https://xirsys.com/">Xirsys</a> for STUN/TURN servers.
