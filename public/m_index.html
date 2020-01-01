@@ -761,13 +761,14 @@ Author     : Shanzid
             function applyMyVideo(component_id, assign){
                 var component=document.getElementById(component_id);
                 if(assign===true){
-                    navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia || navigator.oGetUserMedia;
-                    if (navigator.getUserMedia) {       
-                        navigator.getUserMedia({video: true}, function(stream){
+                    navigator.mediaDevices.getUserMedia({video: true})
+                    .then((stream)=>{
                         component.srcObject=stream;
-                        //component.src= window.URL.createObjectURL(stream);
-                    }, function(){alert("Couldn't fetch video feed");});
-                    }
+                    })
+                    .catch((err)=>{
+                        alert("Couldn't fetch video feed");
+                        console.log(err);
+                    });
                 }else{
                     component.src="";
                 }
